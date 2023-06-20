@@ -2,14 +2,15 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-orders = {}  
+orders = []  #lista slownikow
 
 @router.post("/order")
 def place_order(order: dict):
-    order_id = len(orders) + 1
-    orders[order_id] = order
+    orders.append(order)
     return {"message": "Zamówienie przyjęte"}
 
 @router.get("/orders")
 def get_orders():
     return orders
+
+#kazde zamowienie to slownik z menu ktore przekazywane jest ze wszystkimi indentyfikatorami.
